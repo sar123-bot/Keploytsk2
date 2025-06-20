@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/style.css">
+
+<!DOCTYPE html>
+<html>
+<head><title>Update Task</title></head>
+<body>
+  <h2>Edit Task</h2>
+  <form onsubmit="submitUpdate(event)">
+    <input id="title" value="<%= task.title %>" required>
+    <textarea id="description"><%= task.description %></textarea>
+    <select id="status">
+      <option value="pending" <%= task.status === 'pending' ? 'selected' : '' %>>Pending</option>
+      <option value="completed" <%= task.status === 'completed' ? 'selected' : '' %>>Completed</option>
+    </select>
+    <button type="submit">Update</button>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    async function submitUpdate(e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      const description = document.getElementById("description").value;
+      const status = document.getElementById("status").value;
+      await axios.put("/api/tasks/<%= task.id %>", { title, description, status });
+      location.href = "/";
+    }
+  </script>
+</body>
+</html>

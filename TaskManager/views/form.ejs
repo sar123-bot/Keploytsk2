@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/style.css">
+
+<!DOCTYPE html>
+<html>
+<head><title>Add Task</title></head>
+<body>
+  <h2>Create New Task</h2>
+  <form method="POST" action="/api/tasks" onsubmit="submitForm(event)">
+    <input name="title" placeholder="Title" required>
+    <textarea name="description" placeholder="Description"></textarea>
+    <button type="submit">Add</button>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    async function submitForm(e) {
+      e.preventDefault();
+      const form = e.target;
+      const title = form.title.value;
+      const description = form.description.value;
+      await axios.post('/api/tasks', { title, description });
+      location.href = "/";
+    }
+  </script>
+</body>
+</html>

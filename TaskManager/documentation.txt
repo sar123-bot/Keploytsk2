@@ -1,0 +1,81 @@
+📘 API Documentation
+
+🔹 Get All Tasks
+URL: /api/tasks
+Method: GET
+
+Response:
+[
+  {
+    "id": 1,
+    "title": "Write report",
+    "description": "Prepare summary",
+    "status": "pending"
+  }
+]
+
+---
+
+🔹 Create a Task
+URL: /api/tasks
+Method: POST
+
+Request Body:
+{
+  "title": "New Task",
+  "description": "Do something important"
+}
+
+Response:
+{
+  "message": "Task added"
+}
+
+---
+
+🔹 Update a Task
+URL: /api/tasks/:id
+Method: PUT
+
+Request Body:
+{
+  "title": "Updated Task",
+  "description": "Changed description",
+  "status": "completed"
+}
+
+Response:
+{
+  "message": "Task updated"
+}
+
+---
+
+🔹 Delete a Task
+URL: /api/tasks/:id
+Method: DELETE
+
+Response:
+{
+  "message": "Task deleted"
+}
+
+---
+
+🧪 API Testing with Curl
+
+# Get all tasks
+curl http://localhost:3000/api/tasks
+
+# Add a task
+curl -X POST http://localhost:3000/api/tasks \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Task 1","description":"Test description"}'
+
+# Update a task
+curl -X PUT http://localhost:3000/api/tasks/1 \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Updated","description":"Updated desc","status":"completed"}'
+
+# Delete a task
+curl -X DELETE http://localhost:3000/api/tasks/1
