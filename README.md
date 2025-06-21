@@ -12,6 +12,8 @@ It features a custom-built RESTful API that allows users to **create**, **view**
 - **Frontend**: EJS, HTML, CSS
 - **HTTP Client**: Axios
 - **Database Driver**: node-postgres (`pg`)
+- **Jest** – Unit + integration testing
+- **Supertest** – API endpoint testing
 
 ---
 
@@ -49,6 +51,33 @@ CREATE TABLE tasks (
 npm start
 ```
 
+## ✅ Testing
+
+This project uses **Jest** and **Supertest** for unit, integration, and API tests.
+
+### 📦 Installed Dev Dependencies
+
+```bash
+npm install --save-dev jest supertest
+```
+###  Run Tests
+
+```bash
+npm test
+```
+
+###  Code Coverage
+#### ✔️ Achieved >70% overall test coverage.
+
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s     
+----------|---------|----------|---------|---------|-----------------------
+All files |   73.91 |       25 |      50 |   77.27 |
+db.js     |     100 |      100 |     100 |     100 |
+index.js  |   72.09 |       25 |      50 |    75.6 | 48-49,57-67,73
+----------|---------|----------|---------|---------|-----------------------
+
+
+
 ## 📸 Screenshots
 
 ### ✏️ Test Task
@@ -66,6 +95,8 @@ npm start
 ### ✏️ Delete Task Form
 ![Update Task](./SS/DELETE.png)
 
+### ✏️ test
+![Update Task](./SS/Test.png)
 
 
 
