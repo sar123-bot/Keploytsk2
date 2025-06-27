@@ -1,0 +1,3 @@
+🐰 Keploy: 2025-06-27T12:45:53+05:30 	[31mERROR[0m	failed to get the public IP
+🐰 Keploy: 2025-06-27T12:46:23+05:30 	[31mERROR[0m	failed to authenticate with apikey to the keploy	{"error": "Post \"https://api.keploy.io/auth/apikey\": dial tcp 4.246.54.225:443: i/o timeout"}
+🐰 Keploy: 2025-06-27T12:46:23+05:30 	[31mERROR[0m	error in verifying the API key	{"error": "error sending the authentication API Key: Post \"https://api.keploy.io/auth/apikey\": dial tcp 4.246.54.225:443: i/o timeout"}

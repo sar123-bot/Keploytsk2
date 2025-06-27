@@ -1,0 +1,54 @@
+name: Keploy API Test Suite
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  keploy-api-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: Sarthak
+          POSTGRES_DB: IDKMAN
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Keploy CLI
+        run: |
+          curl --silent -L https://keploy.io/ent/install.sh | bash
+
+      # Optional: Run DB migrations or seed here
+      - name: Wait for PostgreSQL
+        run: |
+          until pg_isready -h localhost -p 5432 -U postgres; do echo waiting for postgres; sleep 2; done
+
+      - name: Run Keploy Test Suite
+        run: |
+          export KEPLOY_API_KEY=yAyawWCfuSxi54jevw== && keploy test-suite --app=b02c6c5d-0fd8-465a-a4f1-4ad96bed726b --base-path http://localhost:3000 --cloud
+
+      - name: Show Results
+        run: echo "Keploy tests completed!"
