@@ -3,7 +3,7 @@ const { Pool } = require("pg");
 const bodyParser = require("body-parser");
 const app = express();
 const port = 3000;
-const pool = require("./db");
+const pool = require("../db");
 
 
 
