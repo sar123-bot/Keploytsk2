@@ -41,22 +41,24 @@ jobs:
         run: |
           curl --silent -L https://keploy.io/ent/install.sh | bash
 
+      # Optional: Run DB migrations or seed here
       - name: Wait for PostgreSQL
         run: |
           until pg_isready -h localhost -p 5432 -U postgres; do echo waiting for postgres; sleep 2; done
 
-      - name: Start the App
+      - name: Start your Node.js app
         run: |
-          nohup npm start &
-          sleep 20
+          nohup npm start > server.log 2>&1 &
+          sleep 10  # wait for server to fully start
 
-      - name: Check if App is Running
-        run: curl -I http://localhost:3000 || echo "App not responding"
+      - name: Check if server is running
+        run: |
+          curl -sSf http://localhost:3000/api/tasks || (echo "❌ Server not responding" && cat server.log && exit 1)
 
       - name: Run Keploy Test Suite
         run: |
-          export KEPLOY_API_KEY=yAyawWCfuSxi54jevw==
+          export KEPLOY_API_KEY=${{ secrets.KEPLOY_API_KEY }}
           keploy test-suite --app=b02c6c5d-0fd8-465a-a4f1-4ad96bed726b --base-path http://localhost:3000 --cloud
 
       - name: Show Results
-        run: echo "Keploy tests completed!"
+        run: echo "✅ Keploy tests completed!"
