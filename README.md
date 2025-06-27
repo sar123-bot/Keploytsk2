@@ -78,8 +78,14 @@ index.js  |   72.09 |       25 |      50 |    75.6 | 48-49,57-67,73
 
 
 
+
 ## 📸 Screenshots
 
+### ✏️ Keploy.io Test Generation
+![Update Task](./SS/TestGeneration.png)
+
+### ✏️ Keploy.io Testing Dashboard 
+![Update Task](./SS/TEST_REPORT.png)
 ### ✏️ Test Task
 ![Update Task](./SS/TESTS.png)
 
